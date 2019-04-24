@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/love-karolina-mateusz/static/js/2.3bb23686.chunk.js"
   },
   {
-    "revision": "596ab70b08fa7a7704c6c75f1993f678",
+    "revision": "dbdfb7d3eedd36a9d9f85e0ca2a0c58b",
     "url": "/love-karolina-mateusz/index.html"
   }
 ];
