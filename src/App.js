@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Card, CardDeck } from 'react-bootstrap';
+import { Card, CardDeck } from 'react-bootstrap';
 import moment from 'moment';
 // eslint-disable-next-line no-unused-vars
 import * as pl from 'moment/locale/pl';
@@ -31,7 +31,9 @@ class App extends Component {
     return (
       <div className="App">
         <Card>
-          <Card.Header>Karolina i Mateusz</Card.Header>
+          <Card.Header className="text-center">
+            {'\u2619 Karolina i Mateusz \u2767'}
+          </Card.Header>
           <Card.Body>
             <CardDeck>
               <Date
@@ -55,7 +57,7 @@ class App extends Component {
             </CardDeck>
           </Card.Body>
           <Card.Footer>
-            <small className="text-muted">{`Aktualny czas ${now.format(
+            <small className="text-muted">{`${now.format(
               format + ' - HH:mm:ss'
             )}`}</small>
           </Card.Footer>
@@ -72,23 +74,21 @@ class Date extends Component {
     const { header, src, now, value } = this.props;
     const date = moment(value);
     return (
-      <Card bg="light">
+      <Card style={{ minWidth: '13.2em', marginBottom: 10 }}>
         <Card.Img variant="top" src={src} />
         <Card.Body>
           <Card.Title>{header}</Card.Title>
-          <Card.Text>
-            <ul>
-              <li>{`${this.beforeAfter(date.diff(now, 'days'), 'dni')}`}</li>
-              <li>{`${this.beforeAfter(
-                date.diff(now, 'weeks'),
-                'tygodnie'
-              )}`}</li>
-              <li>{`${this.beforeAfter(
-                date.diff(now, 'months'),
-                'miesięcy'
-              )}`}</li>
-            </ul>
-          </Card.Text>
+          <ul>
+            <li>{`${this.beforeAfter(date.diff(now, 'days'), 'dni')}`}</li>
+            <li>{`${this.beforeAfter(
+              date.diff(now, 'weeks'),
+              'tygodnie'
+            )}`}</li>
+            <li>{`${this.beforeAfter(
+              date.diff(now, 'months'),
+              'miesięcy'
+            )}`}</li>
+          </ul>
         </Card.Body>
         <Card.Footer>
           <small className="text-muted">{`${date.format(format)}`}</small>
