@@ -74,7 +74,7 @@ class Date extends Component {
     const { header, src, now, value } = this.props;
     const date = moment(value);
     return (
-      <Card bg="light" style={{ minWidth: '13.2em', marginBottom: 10 }}>
+      <Card bg="light" style={{ minWidth: '11.09rem', marginBottom: 10 }}>
         <Card.Img variant="top" src={src} />
         <Card.Body>
           <Card.Title>{header}</Card.Title>
@@ -82,11 +82,11 @@ class Date extends Component {
             <li>{`${this.beforeAfter(date.diff(now, 'days'), 'dni')}`}</li>
             <li>{`${this.beforeAfter(
               date.diff(now, 'weeks'),
-              'tygodnie'
+              'tyg.'
             )}`}</li>
             <li>{`${this.beforeAfter(
               date.diff(now, 'months'),
-              'miesięcy'
+              'm-cy'
             )}`}</li>
           </ul>
         </Card.Body>
