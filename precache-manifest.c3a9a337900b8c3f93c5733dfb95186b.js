@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "e3816f7e339f14dfcceb",
+    "revision": "e55504bb724854f7e114",
     "url": "/love-karolina-mateusz/static/css/main.79a05eaa.chunk.css"
   },
   {
-    "revision": "e3816f7e339f14dfcceb",
-    "url": "/love-karolina-mateusz/static/js/main.de8909f5.chunk.js"
+    "revision": "e55504bb724854f7e114",
+    "url": "/love-karolina-mateusz/static/js/main.4c9870a5.chunk.js"
   },
   {
     "revision": "4a82ea306bfecce109fc",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/love-karolina-mateusz/static/js/2.80f933ac.chunk.js"
   },
   {
-    "revision": "ceb9b03f0fbd24771362a5c8e3fcc0f2",
+    "revision": "dfb790465be17a23f94175429e8b50cc",
     "url": "/love-karolina-mateusz/index.html"
   }
 ];
