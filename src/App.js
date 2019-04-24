@@ -74,7 +74,7 @@ class Date extends Component {
     const { header, src, now, value } = this.props;
     const date = moment(value);
     return (
-      <Card style={{ minWidth: '13.2em', marginBottom: 10 }}>
+      <Card bg="light" style={{ minWidth: '13.2em', marginBottom: 10 }}>
         <Card.Img variant="top" src={src} />
         <Card.Body>
           <Card.Title>{header}</Card.Title>
