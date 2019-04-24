@@ -27,6 +27,7 @@ class App extends Component {
 
   render() {
     const { now } = this.state;
+    const today = now.clone().startOf('day');
 
     return (
       <div className="App">
@@ -39,19 +40,19 @@ class App extends Component {
               <Date
                 header="Piersze spotkanie"
                 value="2018-07-23"
-                now={now}
+                now={today}
                 src="kajaki.jpg"
               />
               <Date
                 header="Początek związku"
                 value="2018-09-14"
-                now={now}
+                now={today}
                 src="giewont.jpg"
               />
               <Date
                 header="Vegas"
                 value="2020-08-22"
-                now={now}
+                now={today}
                 src="vegas.jpg"
               />
             </CardDeck>
@@ -70,6 +71,81 @@ class App extends Component {
 class Date extends Component {
   beforeAfter = (val, s) => (val > 0 ? `za ${val} ${s}` : `${-val} ${s} temu`);
 
+  calculateDays = (date, now) => {
+    const diffDays = date.diff(now, 'days');
+
+    return (
+      <li>
+        {diffDays === 0 ? 'to już dzisiaj' : this.beforeAfter(diffDays, 'dni')}
+      </li>
+    );
+  };
+
+  calculateWeeks = (date, now) => {
+    const diff = date.diff(now, 'days');
+    const diffWeeks = (diff / 7) >> 0;
+    const diffDays = diff % 7;
+
+    return diffWeeks === 0 ? null : (
+      <li>
+        {this.beforeAfter(diffWeeks, 'tyg.')}
+        {diffDays === 0 ? null : (
+          <>
+            <br />
+            {`i ${Math.abs(diffDays)} dni`}
+          </>
+        )}
+      </li>
+    );
+  };
+
+  calculateMonths = (date, now) => {
+    const diffMonths = date.diff(now, 'months');
+    const diff = date.diff(now, 'days');
+    const dd = date.date();
+    const nd = now.date();
+
+    let diffDays = 0;
+
+    if (diff < 0) {
+      if (dd < nd) {
+        diffDays = dd - nd;
+      } else if (dd > nd) {
+        diffDays =
+          dd -
+          nd -
+          date
+            .clone()
+            .endOf('month')
+            .date();
+      }
+    } else if (diff > 0) {
+      if (dd < nd) {
+        diffDays =
+          dd -
+          nd +
+          now
+            .clone()
+            .endOf('month')
+            .date();
+      } else if (dd > nd) {
+        diffDays = dd - nd;
+      }
+    }
+
+    return diffMonths === 0 ? null : (
+      <li>
+        {this.beforeAfter(diffMonths, 'm-cy')}
+        {diffDays === 0 ? null : (
+          <>
+            <br />
+            {`i ${Math.abs(diffDays)} dni`}
+          </>
+        )}
+      </li>
+    );
+  };
+
   render() {
     const { header, src, now, value } = this.props;
     const date = moment(value);
@@ -79,15 +155,9 @@ class Date extends Component {
         <Card.Body>
           <Card.Title>{header}</Card.Title>
           <ul>
-            <li>{`${this.beforeAfter(date.diff(now, 'days'), 'dni')}`}</li>
-            <li>{`${this.beforeAfter(
-              date.diff(now, 'weeks'),
-              'tyg.'
-            )}`}</li>
-            <li>{`${this.beforeAfter(
-              date.diff(now, 'months'),
-              'm-cy'
-            )}`}</li>
+            {this.calculateDays(date, now)}
+            {this.calculateWeeks(date, now)}
+            {this.calculateMonths(date, now)}
           </ul>
         </Card.Body>
         <Card.Footer>
@@ -97,4 +167,5 @@ class Date extends Component {
     );
   }
 }
+
 export default App;
