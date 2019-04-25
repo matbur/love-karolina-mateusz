@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Card, CardDeck } from 'react-bootstrap';
 import moment from 'moment';
+import 'moment/locale/pl';
 import { equals, takeLast } from 'ramda';
 
 const format = 'ddd, D MMM Y';
 
+moment.locale('pl')
 
 type AppState = {
   now: moment.Moment;
