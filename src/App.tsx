@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
 import { Card, CardDeck } from 'react-bootstrap';
 import moment from 'moment';
-// eslint-disable-next-line no-unused-vars
-import * as pl from 'moment/locale/pl';
-import { equals, takeLast } from 'ramda'
-
-moment.locale('pl');
+import { equals, takeLast } from 'ramda';
 
 const format = 'ddd, D MMM Y';
 
-class App extends Component {
-  state = {
-    now: moment(),
-    clicked: [],
-    isHidden: true,
-  };
 
-  componentDidMount() {
+type AppState = {
+  now: moment.Moment;
+  clicked: number[];
+  isHidden: boolean;
+}
+class App extends Component<{}, AppState> {
+  t: NodeJS.Timeout;
+
+  constructor(props: {}) {
+    super(props);
+
+    this.state = {
+      now: moment(),
+      clicked: [],
+      isHidden: true,
+    };
+
     this.t = setInterval(() => {
       this.setState({
         now: moment(),
@@ -28,7 +34,7 @@ class App extends Component {
     clearInterval(this.t);
   }
 
-  clicked = (n) => () => {
+  clicked = (n: number) => () => {
     const { clicked } = this.state
     const isOpen = equals(clicked, [1, 1, 2, 1, 1, 1]) && n === 2
 
@@ -87,10 +93,18 @@ class App extends Component {
   }
 }
 
-class Date extends Component {
-  beforeAfter = (val, s) => (val > 0 ? `za ${val} ${s}` : `${-val} ${s} temu`);
 
-  calculateDays = (date, now) => {
+type DateProps = {
+  header: string;
+  value: string;
+  now: moment.Moment;
+  src: string;
+  handleClick: () => void
+}
+class Date extends Component<DateProps, {}> {
+  beforeAfter = (val: number, s: string) => (val > 0 ? `za ${val} ${s}` : `${-val} ${s} temu`);
+
+  calculateDays = (date: moment.Moment, now: moment.Moment) => {
     const diffDays = date.diff(now, 'days');
 
     return (
@@ -100,7 +114,7 @@ class Date extends Component {
     );
   };
 
-  calculateWeeks = (date, now) => {
+  calculateWeeks = (date: moment.Moment, now: moment.Moment) => {
     const diff = date.diff(now, 'days');
     const diffWeeks = (diff / 7) >> 0;
     const diffDays = diff % 7;
@@ -118,7 +132,7 @@ class Date extends Component {
     );
   };
 
-  calculateMonths = (date, now) => {
+  calculateMonths = (date: moment.Moment, now: moment.Moment) => {
     const diffMonths = date.diff(now, 'months');
     const diff = date.diff(now, 'days');
     const dd = date.date();
@@ -130,23 +144,11 @@ class Date extends Component {
       if (dd < nd) {
         diffDays = dd - nd;
       } else if (dd > nd) {
-        diffDays =
-          dd -
-          nd -
-          date
-            .clone()
-            .endOf('month')
-            .date();
+        diffDays = dd - nd - date.clone().endOf('month').date();
       }
     } else if (diff > 0) {
       if (dd < nd) {
-        diffDays =
-          dd -
-          nd +
-          now
-            .clone()
-            .endOf('month')
-            .date();
+        diffDays = dd - nd + now.clone().endOf('month').date();
       } else if (dd > nd) {
         diffDays = dd - nd;
       }
@@ -166,8 +168,7 @@ class Date extends Component {
   };
 
   render() {
-    const { header, src, now, value } = this.props;
-    const { handleClick } = this.props
+    const { header, src, now, value, handleClick } = this.props;
     const date = moment(value);
 
     return (
@@ -193,5 +194,4 @@ class Date extends Component {
     );
   }
 }
-
 export default App;
