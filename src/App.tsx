@@ -36,10 +36,11 @@ class App extends Component<{}, AppState> {
 
   clicked = (n: number) => () => {
     const { clicked } = this.state
-    const isOpen = equals(clicked, [1, 1, 2, 1, 1, 1]) && n === 2
+    const code = [1, 1, 2, 1, 1, 1, 2]
+    const isOpen = equals(clicked, code) && n === 2
 
     this.setState({
-      clicked: isOpen ? [] : [...takeLast(5, clicked), n],
+      clicked: isOpen ? [] : takeLast(code.length, [...clicked, n]),
       isHidden: !isOpen,
     })
   }
