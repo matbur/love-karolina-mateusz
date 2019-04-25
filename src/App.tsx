@@ -4,9 +4,9 @@ import moment from 'moment';
 import 'moment/locale/pl';
 import { equals, takeLast } from 'ramda';
 
-const format = 'ddd, D MMM Y';
+moment.locale("pl")
 
-moment.locale('pl')
+const format = 'ddd, D MMM Y';
 
 type AppState = {
   now: moment.Moment;
@@ -95,7 +95,6 @@ class App extends Component<{}, AppState> {
     );
   }
 }
-
 
 type DateProps = {
   header: string;
@@ -197,4 +196,5 @@ class Date extends Component<DateProps, {}> {
     );
   }
 }
+
 export default App;
