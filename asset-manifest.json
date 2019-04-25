@@ -1,13 +1,15 @@
 {
-  "main.css": "/love-karolina-mateusz/static/css/main.79a05eaa.chunk.css",
-  "main.js": "/love-karolina-mateusz/static/js/main.4c9870a5.chunk.js",
-  "main.js.map": "/love-karolina-mateusz/static/js/main.4c9870a5.chunk.js.map",
-  "runtime~main.js": "/love-karolina-mateusz/static/js/runtime~main.e38b5a38.js",
-  "runtime~main.js.map": "/love-karolina-mateusz/static/js/runtime~main.e38b5a38.js.map",
-  "static/js/2.80f933ac.chunk.js": "/love-karolina-mateusz/static/js/2.80f933ac.chunk.js",
-  "static/js/2.80f933ac.chunk.js.map": "/love-karolina-mateusz/static/js/2.80f933ac.chunk.js.map",
-  "index.html": "/love-karolina-mateusz/index.html",
-  "precache-manifest.c3a9a337900b8c3f93c5733dfb95186b.js": "/love-karolina-mateusz/precache-manifest.c3a9a337900b8c3f93c5733dfb95186b.js",
-  "service-worker.js": "/love-karolina-mateusz/service-worker.js",
-  "static/css/main.79a05eaa.chunk.css.map": "/love-karolina-mateusz/static/css/main.79a05eaa.chunk.css.map"
+  "files": {
+    "main.css": "/love-karolina-mateusz/static/css/main.42cc8b22.chunk.css",
+    "main.js": "/love-karolina-mateusz/static/js/main.9df89304.chunk.js",
+    "main.js.map": "/love-karolina-mateusz/static/js/main.9df89304.chunk.js.map",
+    "runtime~main.js": "/love-karolina-mateusz/static/js/runtime~main.e38b5a38.js",
+    "runtime~main.js.map": "/love-karolina-mateusz/static/js/runtime~main.e38b5a38.js.map",
+    "static/js/2.88c29b05.chunk.js": "/love-karolina-mateusz/static/js/2.88c29b05.chunk.js",
+    "static/js/2.88c29b05.chunk.js.map": "/love-karolina-mateusz/static/js/2.88c29b05.chunk.js.map",
+    "index.html": "/love-karolina-mateusz/index.html",
+    "precache-manifest.88c977d2e3fa6c8f18dd15482ef43e58.js": "/love-karolina-mateusz/precache-manifest.88c977d2e3fa6c8f18dd15482ef43e58.js",
+    "service-worker.js": "/love-karolina-mateusz/service-worker.js",
+    "static/css/main.42cc8b22.chunk.css.map": "/love-karolina-mateusz/static/css/main.42cc8b22.chunk.css.map"
+  }
 }
