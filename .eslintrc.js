@@ -25,10 +25,11 @@ module.exports = {
         'react',
     ],
     'rules': {
-        'indent': [
-            'error',
-            4
-        ],
+        "indent": "off",
+        "@typescript-eslint/indent": ["error", 2],
+
+        "comma-dangle": ["error", "always-multiline"],
+
         'linebreak-style': [
             'error',
             'unix'
@@ -41,5 +42,9 @@ module.exports = {
             'error',
             'always'
         ],
+
+        'prettier/prettier': {
+            'singleQuote': true,
+        }
     }
 };

@@ -4,11 +4,11 @@ import moment from 'moment';
 import 'moment/locale/pl';
 import { equals, takeLast } from 'ramda';
 
-moment.locale("pl")
+moment.locale('pl');
 
 const format = 'ddd, D MMM Y';
 
-type AppState = {
+interface AppState {
   now: moment.Moment;
   clicked: number[];
   isHidden: boolean;
@@ -37,15 +37,15 @@ class App extends Component<{}, AppState> {
   }
 
   clicked = (n: number) => () => {
-    const { clicked } = this.state
-    const code = [1, 1, 2, 1, 1, 1, 2]
-    const isOpen = equals(clicked, code) && n === 2
+    const { clicked } = this.state;
+    const code = [1, 1, 2, 1, 1, 1, 2];
+    const isOpen = equals(clicked, code) && n === 2;
 
     this.setState({
       clicked: isOpen ? [] : takeLast(code.length, [...clicked, n]),
       isHidden: !isOpen,
-    })
-  }
+    });
+  };
 
   render() {
     const { now, isHidden } = this.state;
@@ -73,16 +73,15 @@ class App extends Component<{}, AppState> {
                 src="giewont.jpg"
                 handleClick={this.clicked(2)}
               />
-              {
-                isHidden ? null :
-                  <Date
-                    header="Vegas"
-                    value="2020-08-22"
-                    now={today}
-                    src="vegas.jpg"
-                    handleClick={this.clicked(3)}
-                  />
-              }
+              {isHidden ? null : (
+                <Date
+                  header="Vegas"
+                  value="2020-08-22"
+                  now={today}
+                  src="vegas.jpg"
+                  handleClick={this.clicked(3)}
+                />
+              )}
             </CardDeck>
           </Card.Body>
           <Card.Footer>
@@ -96,15 +95,16 @@ class App extends Component<{}, AppState> {
   }
 }
 
-type DateProps = {
+interface DateProps {
   header: string;
   value: string;
   now: moment.Moment;
   src: string;
-  handleClick: () => void
+  handleClick: () => void;
 }
 class Date extends Component<DateProps, {}> {
-  beforeAfter = (val: number, s: string) => (val > 0 ? `za ${val} ${s}` : `${-val} ${s} temu`);
+  beforeAfter = (val: number, s: string) =>
+    val > 0 ? `za ${val} ${s}` : `${-val} ${s} temu`;
 
   calculateDays = (date: moment.Moment, now: moment.Moment) => {
     const diffDays = date.diff(now, 'days');
@@ -177,7 +177,6 @@ class Date extends Component<DateProps, {}> {
       <Card
         bg="light"
         style={{ minWidth: '11.09rem', marginBottom: 10 }}
-        className={"hidden"}
         onClick={handleClick}
       >
         <Card.Img variant="top" src={src} />
