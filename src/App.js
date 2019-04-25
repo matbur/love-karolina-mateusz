@@ -33,7 +33,7 @@ class App extends Component {
     const isOpen = equals(clicked, [1, 1, 2, 1, 1, 1]) && n === 2
 
     this.setState({
-      clicked: [...takeLast(5, clicked), n],
+      clicked: isOpen ? [] : [...takeLast(5, clicked), n],
       isHidden: !isOpen,
     })
   }
@@ -67,8 +67,6 @@ class App extends Component {
               {
                 isHidden ? null :
                   <Date
-                    // className={"hidden"}
-                    style={{ display: 'none' }}
                     header="Vegas"
                     value="2020-08-22"
                     now={today}
