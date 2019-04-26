@@ -1,12 +1,12 @@
-import moment from 'moment';
+import { Moment } from 'moment';
 
 export const beforeAfter = (val: number, s: string): string =>
   val > 0 ? `za ${val} ${s}` : `${-val} ${s} temu`;
 
-export const calculateDays = (date: moment.Moment, today: moment.Moment): number =>
+export const calculateDays = (date: Moment, today: Moment): number =>
   date.diff(today, 'days');
 
-export const calculateWeeks = (date: moment.Moment, today: moment.Moment): { weeks: number; days: number } => {
+export const calculateWeeks = (date: Moment, today: Moment): { weeks: number; days: number } => {
   const diff = date.diff(today, 'days');
 
   return {
@@ -15,7 +15,7 @@ export const calculateWeeks = (date: moment.Moment, today: moment.Moment): { wee
   };
 };
 
-export const calculateMonths = (date: moment.Moment, today: moment.Moment): { months: number; days: number } => {
+export const calculateMonths = (date: Moment, today: Moment): { months: number; days: number } => {
   const diff = date.diff(today, 'days');
   const dd = date.date();
   const nd = today.date();

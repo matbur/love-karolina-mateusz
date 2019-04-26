@@ -2,7 +2,7 @@ import 'moment/locale/pl';
 import { Card, CardDeck } from 'react-bootstrap';
 import React, { Component, ReactElement } from 'react';
 import { equals, takeLast } from 'ramda';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 
 import { beforeAfter, calculateDays, calculateMonths, calculateWeeks } from './utils/date';
 
@@ -11,7 +11,7 @@ moment.locale('pl');
 const format = 'ddd, D MMM Y';
 
 interface AppState {
-  now: moment.Moment;
+  now: Moment;
   clicked: number[];
   isHidden: boolean;
 }
@@ -90,8 +90,8 @@ class App extends Component<{}, AppState> {
 }
 
 interface PartsProps {
-  date: moment.Moment;
-  today: moment.Moment;
+  date: Moment;
+  today: Moment;
 }
 
 const Days: React.FC<PartsProps> = ({ date, today }): ReactElement => {
@@ -150,7 +150,7 @@ const Months: React.FC<PartsProps> = ({ date, today }): ReactElement | null => {
 interface EventProps {
   header: string;
   value: string;
-  now: moment.Moment;
+  now: Moment;
   src: string;
   handleClick: () => void;
 }
