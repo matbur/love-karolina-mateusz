@@ -25,10 +25,10 @@ module.exports = {
         'react',
     ],
     'rules': {
-        "indent": "off",
-        "@typescript-eslint/indent": ["error", 2],
+        'indent': 'off',
+        '@typescript-eslint/indent': ['error', 2],
 
-        "comma-dangle": ["error", "always-multiline"],
+        'comma-dangle': ['error', 'always-multiline'],
 
         'linebreak-style': [
             'error',
@@ -45,6 +45,12 @@ module.exports = {
 
         'prettier/prettier': {
             'singleQuote': true,
-        }
+        },
+        'sort-imports': ['warn', {
+            'ignoreCase': false,
+            'ignoreDeclarationSort': false,
+            'ignoreMemberSort': false,
+            'memberSyntaxSortOrder': ['none', 'all', 'multiple', 'single']
+        }]
     }
 };

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Card, CardDeck } from 'react-bootstrap';
-import moment from 'moment';
 import 'moment/locale/pl';
+import { Card, CardDeck } from 'react-bootstrap';
+import React, { Component, ReactElement } from 'react';
 import { equals, takeLast } from 'ramda';
+import moment from 'moment';
 
-import { calculateDays, beforeAfter, calculateWeeks, calculateMonths } from './utils/date';
+import { beforeAfter, calculateDays, calculateMonths, calculateWeeks } from './utils/date';
 
 moment.locale('pl');
 
@@ -22,15 +22,15 @@ class App extends Component<{}, AppState> {
     isHidden: true,
   };
 
-  componentDidMount() {
-    setInterval(() => {
+  public componentDidMount(): void {
+    setInterval((): void => {
       this.setState({
         now: moment(),
       });
     }, 100);
   }
 
-  clicked = (n: number) => () => {
+  private clicked = (n: number): (() => void) => (): void => {
     const { clicked } = this.state;
     const code = [1, 1, 2, 1, 1, 1, 2];
     const isOpen = equals(clicked, code) && n === 2;
@@ -41,7 +41,7 @@ class App extends Component<{}, AppState> {
     });
   };
 
-  render() {
+  public render(): ReactElement {
     const { now, isHidden } = this.state;
     const today = now.clone().startOf('day');
 
@@ -94,7 +94,7 @@ interface PartsProps {
   today: moment.Moment;
 }
 
-const Days: React.FC<PartsProps> = ({ date, today }) => {
+const Days: React.FC<PartsProps> = ({ date, today }): ReactElement => {
   const days = calculateDays(date, today);
 
   return (
@@ -107,7 +107,7 @@ const Days: React.FC<PartsProps> = ({ date, today }) => {
   );
 };
 
-const Weeks: React.FC<PartsProps> = ({ date, today }) => {
+const Weeks: React.FC<PartsProps> = ({ date, today }): ReactElement | null => {
   const { weeks, days } = calculateWeeks(date, today);
 
   return weeks === 0
@@ -127,7 +127,7 @@ const Weeks: React.FC<PartsProps> = ({ date, today }) => {
     );
 };
 
-const Months: React.FC<PartsProps> = ({ date, today }) => {
+const Months: React.FC<PartsProps> = ({ date, today }): ReactElement | null => {
   const { months, days } = calculateMonths(date, today);
 
   return months === 0
@@ -155,7 +155,7 @@ interface EventProps {
   handleClick: () => void;
 }
 
-const Event: React.FC<EventProps> = ({ header, value, now, src, handleClick }) => {
+const Event: React.FC<EventProps> = ({ header, value, now, src, handleClick }): React.ReactElement => {
   const date = moment(value);
 
   return (
