@@ -4,7 +4,7 @@ import React, { Component, ReactElement } from 'react';
 import { equals, takeLast } from 'ramda';
 import moment, { Moment } from 'moment';
 
-import { Event } from './components/Event';
+import Event from './components/Event';
 
 moment.locale('pl');
 

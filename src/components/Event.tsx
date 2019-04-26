@@ -2,65 +2,9 @@ import React, { ReactElement } from 'react';
 import moment, { Moment } from 'moment';
 import { Card } from 'react-bootstrap';
 
-import { beforeAfter, calculateDays, calculateMonths, calculateWeeks } from '../utils/date';
-
-interface PartsProps {
-  date: Moment;
-  today: Moment;
-}
-
-const Days: React.FC<PartsProps> = ({ date, today }): ReactElement => {
-  const days = calculateDays(date, today);
-
-  return (
-    <li>
-      {days === 0
-        ? 'to już dzisiaj'
-        : beforeAfter(days, 'dni')
-      }
-    </li>
-  );
-};
-
-const Weeks: React.FC<PartsProps> = ({ date, today }): ReactElement | null => {
-  const { weeks, days } = calculateWeeks(date, today);
-
-  return weeks === 0
-    ? null
-    : (
-      <li>
-        {beforeAfter(weeks, 'tyg.')}
-        {days === 0
-          ? null
-          : (
-            <>
-              <br />
-              {`i ${Math.abs(days)} dni`}
-            </>
-          )}
-      </li>
-    );
-};
-
-const Months: React.FC<PartsProps> = ({ date, today }): ReactElement | null => {
-  const { months, days } = calculateMonths(date, today);
-
-  return months === 0
-    ? null
-    : (
-      <li>
-        {beforeAfter(months, 'm-cy')}
-        {days === 0
-          ? null
-          : (
-            <>
-              <br />
-              {`i ${Math.abs(days)} dni`}
-            </>
-          )}
-      </li>
-    );
-};
+import Days from './Days';
+import Months from './Months';
+import Weeks from './Weeks';
 
 interface EventProps {
   header: string;
@@ -70,7 +14,7 @@ interface EventProps {
   handleClick: () => void;
 }
 
-export const Event: React.FC<EventProps> = ({ header, value, now, src, handleClick }): React.ReactElement => {
+const Event: React.FC<EventProps> = ({ header, value, now, src, handleClick }): React.ReactElement => {
   const date = moment(value);
 
   return (
@@ -94,3 +38,5 @@ export const Event: React.FC<EventProps> = ({ header, value, now, src, handleCli
     </Card>
   );
 };
+
+export default Event;
