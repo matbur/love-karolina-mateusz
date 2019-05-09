@@ -11,13 +11,11 @@ moment.locale('pl');
 interface AppState {
   now: Moment;
   clicked: number[];
-  isHidden: boolean;
 }
 class App extends Component<{}, AppState> {
   public state = {
     now: moment(),
     clicked: [],
-    isHidden: true,
   };
 
   public componentDidMount(): void {
@@ -30,20 +28,22 @@ class App extends Component<{}, AppState> {
 
   private code = [1, 1, 2, 1, 1, 1, 2, 2];
 
+  private isOpen = (a: number[]): boolean => equals(this.code, a);
+
   private clicked = (n: number): (() => void) => (): void => {
     const { clicked } = this.state;
-    const clicked2 = [...clicked, n];
-    const isOpen = equals(clicked2, this.code);
+    const isOpen = this.isOpen(clicked);
 
     this.setState({
-      clicked: isOpen ? [] : takeLast(this.code.length-1, clicked2),
-      isHidden: !isOpen,
+      clicked: isOpen ? [n] : takeLast(this.code.length, [...clicked, n]),
     });
   };
 
   public render(): ReactElement {
-    const { now, isHidden } = this.state;
+    const { now, clicked } = this.state;
     const today = now.clone().startOf('day');
+
+    console.log(this.isOpen(clicked), clicked);
 
     return (
       <Card>
@@ -66,7 +66,7 @@ class App extends Component<{}, AppState> {
               src="giewont.jpg"
               handleClick={this.clicked(2)}
             />
-            {isHidden ? null : (
+            {!this.isOpen(this.state.clicked) ? null : (
               <Event
                 header="Vegas"
                 value="2020-08-22"
