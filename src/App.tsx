@@ -28,13 +28,15 @@ class App extends Component<{}, AppState> {
     }, 100);
   }
 
+  private code = [1, 1, 2, 1, 1, 1, 2, 2];
+
   private clicked = (n: number): (() => void) => (): void => {
     const { clicked } = this.state;
-    const code = [1, 1, 2, 1, 1, 1, 2];
-    const isOpen = equals(clicked, code) && n === 2;
+    const clicked2 = [...clicked, n];
+    const isOpen = equals(clicked2, this.code);
 
     this.setState({
-      clicked: isOpen ? [] : takeLast(code.length, [...clicked, n]),
+      clicked: isOpen ? [] : takeLast(this.code.length-1, clicked2),
       isHidden: !isOpen,
     });
   };
