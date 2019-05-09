@@ -14,7 +14,7 @@ interface AppState {
 }
 class App extends Component<{}, AppState> {
   private code = [1, 1, 2, 1, 1, 1, 2, 2];
-  
+
   public state = {
     now: moment(),
     clicked: [],
@@ -28,7 +28,11 @@ class App extends Component<{}, AppState> {
     }, 100);
   }
 
-  private isOpen = (): boolean => equals(this.code, this.state.clicked);
+  private isOpen = (): boolean => {
+    const { clicked } = this.state;
+
+    return equals(this.code, clicked);
+  };
 
   private clicked = (n: number): (() => void) => (): void => {
     const { clicked } = this.state;
