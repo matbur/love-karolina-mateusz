@@ -13,6 +13,8 @@ interface AppState {
   clicked: number[];
 }
 class App extends Component<{}, AppState> {
+  private code = [1, 1, 2, 1, 1, 1, 2, 2];
+  
   public state = {
     now: moment(),
     clicked: [],
@@ -26,24 +28,19 @@ class App extends Component<{}, AppState> {
     }, 100);
   }
 
-  private code = [1, 1, 2, 1, 1, 1, 2, 2];
-
-  private isOpen = (a: number[]): boolean => equals(this.code, a);
+  private isOpen = (): boolean => equals(this.code, this.state.clicked);
 
   private clicked = (n: number): (() => void) => (): void => {
     const { clicked } = this.state;
-    const isOpen = this.isOpen(clicked);
 
     this.setState({
-      clicked: isOpen ? [n] : takeLast(this.code.length, [...clicked, n]),
+      clicked: this.isOpen() ? [n] : takeLast(this.code.length, [...clicked, n]),
     });
   };
 
   public render(): ReactElement {
-    const { now, clicked } = this.state;
+    const { now } = this.state;
     const today = now.clone().startOf('day');
-
-    console.log(this.isOpen(clicked), clicked);
 
     return (
       <Card>
@@ -66,7 +63,7 @@ class App extends Component<{}, AppState> {
               src="giewont.jpg"
               handleClick={this.clicked(2)}
             />
-            {!this.isOpen(this.state.clicked) ? null : (
+            {!this.isOpen() ? null : (
               <Event
                 header="Vegas"
                 value="2020-08-22"
