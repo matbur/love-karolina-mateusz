@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.0/workbox-sw.js");
 
 importScripts(
-  "/love-karolina-mateusz/precache-manifest.4cb7d559891f4a5001c351a256a85e89.js"
+  "/love-karolina-mateusz/precache-manifest.f032bdeb3ad43f9a66702c549b9aa3ee.js"
 );
 
 self.addEventListener('message', (event) => {
