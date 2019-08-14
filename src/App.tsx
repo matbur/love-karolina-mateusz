@@ -13,7 +13,16 @@ interface AppState {
   clicked: number[];
 }
 class App extends Component<{}, AppState> {
-  private code = [1, 1, 2, 1, 1, 1, 2, 2];
+  private codes = (n: number): number[] => {
+    switch (n) {
+      case 3:
+        return [1, 1, 2, 1, 1, 1, 2, 2];
+      case 4:
+        return [3, 1, 2, 1, 1, 1, 2, 2];
+      default:
+        return [];
+    }
+  };
 
   public state = {
     now: moment(),
@@ -28,17 +37,17 @@ class App extends Component<{}, AppState> {
     }, 100);
   }
 
-  private isOpen = (): boolean => {
+  private isOpen = (n: number): boolean => {
     const { clicked } = this.state;
 
-    return equals(this.code, clicked);
+    return equals(this.codes(n), clicked);
   };
 
   private clicked = (n: number): (() => void) => (): void => {
     const { clicked } = this.state;
 
     this.setState({
-      clicked: this.isOpen() ? [n] : takeLast(this.code.length, [...clicked, n]),
+      clicked: this.isOpen(n) ? [n] : takeLast(8, [...clicked, n]),
     });
   };
 
@@ -67,15 +76,24 @@ class App extends Component<{}, AppState> {
               src="giewont.jpg"
               handleClick={this.clicked(2)}
             />
-            {!this.isOpen() ? null : (
+            {this.isOpen(3) &&
+              <Event
+                header="Zaręczyny"
+                value="2019-08-02"
+                now={today}
+                src="trzebnica.jpg"
+                handleClick={this.clicked(3)}
+              />
+            }
+            {this.isOpen(4) &&
               <Event
                 header="Vegas"
                 value="2020-08-22"
                 now={today}
                 src="vegas.jpg"
-                handleClick={this.clicked(3)}
+                handleClick={this.clicked(4)}
               />
-            )}
+            }
           </CardDeck>
         </Card.Body>
         <Card.Footer>
