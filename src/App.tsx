@@ -18,7 +18,7 @@ class App extends Component<{}, AppState> {
       case 3:
         return [1, 1, 2, 1, 1, 1, 2, 2];
       case 4:
-        return [3, 1, 2, 1, 1, 1, 2, 2];
+        return [3, 1, 2, 2, 1];
       default:
         return [];
     }
@@ -40,14 +40,20 @@ class App extends Component<{}, AppState> {
   private isOpen = (n: number): boolean => {
     const { clicked } = this.state;
 
-    return equals(this.codes(n), clicked);
+    if (equals(this.codes(n), takeLast(this.codes(n).length, clicked))) {
+      return true;
+    }
+    if (n === 3 && this.isOpen(4)) {
+      return true;
+    }
+    return false;
   };
 
   private clicked = (n: number): (() => void) => (): void => {
     const { clicked } = this.state;
 
     this.setState({
-      clicked: this.isOpen(n) ? [n] : takeLast(8, [...clicked, n]),
+      clicked: takeLast(16, [...clicked, n]),
     });
   };
 
