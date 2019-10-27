@@ -94,7 +94,7 @@ class App extends Component<{}, AppState> {
             {this.isOpen(4) &&
               <Event
                 header="Vegas"
-                value="2020-08-22"
+                value="2020-08-14"
                 now={today}
                 src="vegas.jpg"
                 handleClick={this.clicked(4)}
