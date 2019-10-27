@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6ab9340260bbdb15cb85d8d282f1561d",
+    "revision": "82bb7042e5710acfd76b00f9f81c5f8b",
     "url": "/love-karolina-mateusz/index.html"
   },
   {
-    "revision": "8ae1b008efacb30fe8a4",
+    "revision": "e21432027ec0c47ada0e",
     "url": "/love-karolina-mateusz/static/css/main.42cc8b22.chunk.css"
   },
   {
-    "revision": "22d7fd3beb5ce1049cc5",
-    "url": "/love-karolina-mateusz/static/js/2.cf525500.chunk.js"
+    "revision": "216401620c9c4f03dc95",
+    "url": "/love-karolina-mateusz/static/js/2.184c2b27.chunk.js"
   },
   {
-    "revision": "8ae1b008efacb30fe8a4",
-    "url": "/love-karolina-mateusz/static/js/main.2cd68eee.chunk.js"
+    "revision": "e21432027ec0c47ada0e",
+    "url": "/love-karolina-mateusz/static/js/main.483fba62.chunk.js"
   },
   {
     "revision": "4a82ea306bfecce109fc",
