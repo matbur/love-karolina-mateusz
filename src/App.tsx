@@ -15,10 +15,8 @@ interface AppState {
 class App extends Component<{}, AppState> {
   private codes = (n: number): number[] => {
     switch (n) {
-      case 3:
-        return [1, 1, 2, 1, 1, 1, 2, 2];
       case 4:
-        return [3, 1, 2, 2, 1];
+        return [1, 1, 2, 1, 1, 1, 2, 2];
       default:
         return [];
     }
@@ -82,15 +80,13 @@ class App extends Component<{}, AppState> {
               src="giewont.jpg"
               handleClick={this.clicked(2)}
             />
-            {this.isOpen(3) &&
-              <Event
-                header="Zaręczyny"
-                value="2019-08-02"
-                now={today}
-                src="trzebnica.jpg"
-                handleClick={this.clicked(3)}
-              />
-            }
+            <Event
+              header="Zaręczyny"
+              value="2019-08-02"
+              now={today}
+              src="trzebnica.jpg"
+              handleClick={this.clicked(3)}
+            />
             {this.isOpen(4) &&
               <Event
                 header="Vegas"
