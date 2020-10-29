@@ -10,7 +10,7 @@
     "@types/node": "11.13.7",
     "@types/ramda": "0.26.8",
     "@types/react": "16.8.14",
-    "@types/react-bootstrap": "0.32.17",
+    "@types/react-bootstrap": "0.32.24",
     "@types/react-dom": "16.8.4",
     "bootstrap": "4.4.1",
     "gh-pages": "2.0.1",
