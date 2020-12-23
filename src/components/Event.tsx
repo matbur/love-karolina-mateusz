@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import moment, { Moment } from 'moment';
 import { Card } from 'react-bootstrap';
 
@@ -11,17 +11,15 @@ interface EventProps {
   value: string;
   now: Moment;
   src: string;
-  handleClick: () => void;
 }
 
-const Event: React.FC<EventProps> = ({ header, value, now, src, handleClick }): React.ReactElement => {
+const Event: React.FC<EventProps> = ({ header, value, now, src }): React.ReactElement => {
   const date = moment(value);
 
   return (
     <Card
       bg="light"
       style={{ minWidth: '11.09rem', marginBottom: 10 }}
-      onClick={handleClick}
     >
       <Card.Img variant="top" src={src} />
       <Card.Body>
