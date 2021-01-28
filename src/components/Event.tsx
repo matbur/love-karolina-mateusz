@@ -1,40 +1,46 @@
-import React from 'react';
-import moment, { Moment } from 'moment';
-import { Card } from 'react-bootstrap';
-
-import Days from './Days';
-import Months from './Months';
-import Weeks from './Weeks';
+import React from "react";
+import { Card } from "react-bootstrap";
+import { format, formatDistanceToNowStrict } from "date-fns";
+import { pl } from "date-fns/locale";
 
 interface EventProps {
   header: string;
-  value: string;
-  now: Moment;
+  value: Date;
   src: string;
 }
 
-const Event: React.FC<EventProps> = ({ header, value, now, src }): React.ReactElement => {
-  const date = moment(value);
+const Event: React.FC<EventProps> = ({
+  header,
+  value,
+  src
+}): React.ReactElement => (
+  <Card bg="light" style={{ minWidth: "11.09rem", marginBottom: 10 }}>
+    <Card.Img variant="top" src={src} />
+    <Card.Body>
+      <Card.Title>{header}</Card.Title>
+      <ul>
+        <li>
+          {formatDistanceToNowStrict(value, { ...dateOptions, unit: "day" })}
+        </li>
+        <li>
+          {formatDistanceToNowStrict(value, { ...dateOptions, unit: "month" })}
+        </li>
+        <li>
+          {formatDistanceToNowStrict(value, { ...dateOptions, unit: "year" })}
+        </li>
+      </ul>
+    </Card.Body>
+    <Card.Footer>
+      <small className="text-muted">
+        {format(value, "ccc, d LLL y", { locale: pl })}{" "}
+      </small>
+    </Card.Footer>
+  </Card>
+);
 
-  return (
-    <Card
-      bg="light"
-      style={{ minWidth: '11.09rem', marginBottom: 10 }}
-    >
-      <Card.Img variant="top" src={src} />
-      <Card.Body>
-        <Card.Title>{header}</Card.Title>
-        <ul>
-          <Days date={date} today={now} />
-          <Weeks date={date} today={now} />
-          <Months date={date} today={now} />
-        </ul>
-      </Card.Body>
-      <Card.Footer>
-        <small className="text-muted">{`${date.format('ddd, D MMM Y')}`}</small>
-      </Card.Footer>
-    </Card>
-  );
+const dateOptions = {
+  addSuffix: true,
+  locale: pl
 };
 
 export default Event;
