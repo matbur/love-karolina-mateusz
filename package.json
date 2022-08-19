@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "build": "esbuild src/index.tsx --bundle --minify --outdir=public/build",
+    "watch": "esbuild src/index.tsx --bundle --servedir=public --outdir=public/build"
+  },
   "dependencies": {
     "esbuild": "^0.15.5",
     "react": "^18.2.0",
