@@ -30,7 +30,7 @@ class App extends Component<{}, AppState> {
         <Card.Body>
           <CardDeck>
             <Event
-              header="Piersze spotkanie"
+              header="Pierwsze spotkanie"
               value={new Date(Date.parse("2018-07-23"))}
               src="kajaki.jpg"
             />
@@ -45,7 +45,7 @@ class App extends Component<{}, AppState> {
               src="trzebnica.jpg"
             />
             <Event
-              header="Vegas"
+              header="Ślub"
               value={new Date(Date.parse("2020-08-14"))}
               src="vegas.jpg"
             />
