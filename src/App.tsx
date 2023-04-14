@@ -1,9 +1,9 @@
-import { Card, CardDeck } from "react-bootstrap";
-import React, { Component, ReactElement } from "react";
 import { pl } from "date-fns/locale";
+import { Component, ReactElement } from "react";
+import { Card, CardDeck } from "react-bootstrap";
 
-import Event from "./components/Event";
 import { format } from "date-fns";
+import Event from "./components/Event";
 
 interface AppState {
   now: Date;
